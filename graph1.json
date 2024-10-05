@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 400,
+  "title": { "text": "Cheapest European Cities" },
+  "data": {
+    "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Homework10FIT3179/refs/heads/main/Weighted%20average%20of%20eight%20capital%20cities%2C%20quarterly%20movement%20(%25).csv"
+  },
+  "params": [
+    {
+      "name": "Groups_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Food and non-alcoholic beverages",
+          "Alcohol and tobacco",
+          "Clothing and footwear",
+          "Housing",
+          "Furnishings, household equipment and services",
+          "Health",
+          "Transport",
+          "Communication",
+          "Recreation and culture",
+          "Education",
+          "Insurance and financial services"
+        ],
+        "labels": [
+          "Show All",
+          "Food and non-alcoholic beverages",
+          "Alcohol and tobacco",
+          "Clothing and footwear",
+          "Housing",
+          "Furnishings, household equipment and services",
+          "Health",
+          "Transport",
+          "Communication",
+          "Recreation and culture",
+          "Education",
+          "Insurance and financial services"
+        ],
+        "name": "Group Selection: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": { 
+          "field": "Percentage change from previous quarter", 
+          "type": "quantitative", 
+          "title": "Percentage change from previous quarter" 
+        },
+        "y": { "field": "Groups", "type": "nominal" },
+        "opacity": {
+          "condition": {
+            "test": "datum.Groups == Groups_selection || Groups_selection == null",
+            "value": 1
+          },
+          "value": 0.2
+        },
+        "tooltip": [
+          { "field": "Percentage change from previous quarter", "type": "quantitative" },
+          { "field": "Groups", "type": "nominal" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 10,
+        "dy": -5,
+        "color": "black", 
+        "fontSize": 14,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "aggregate": "max",
+          "field": "Percentage change from previous quarter",
+          "type": "quantitative",
+          "title": "Percentage change from previous quarter" 
+        },
+        "y": {
+          "datum": "Clothing and footwear"
+        },
+        "text": { "value": "Highest Percentage Change" }
+      }
+    }
+  ]
+}
