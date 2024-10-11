@@ -30,7 +30,8 @@
             "type": "quantitative",
             "scale": {
               "scheme": "blues"
-            }
+            },
+            "legend": null  
           }
         }
       },
@@ -50,7 +51,8 @@
             "type": "quantitative",
             "scale": {
               "scheme": "blues"
-            }
+            },
+            "legend": null  
           },
           "tooltip": [
             {"field": "Grocery", "type": "nominal", "title": "Grocery Product"},
