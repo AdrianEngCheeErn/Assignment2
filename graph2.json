@@ -9,13 +9,8 @@
     "encoding": {
       "x": {
         "field": "Date",
-        "type": "temporal",
-        "timeUnit": "yearmonth",  
-        "title": "Date (Month & Year)",
-        "axis": {
-          "format": "%b %Y", 
-          "labelAngle": -45  
-        }
+        "type": "nominal",  
+        "title": "Date"
       }
     },
     "layer": [
@@ -23,7 +18,7 @@
         "mark": {
           "type": "line",
           "color": "#FF6347"
-        },
+        }, 
         "encoding": {
           "y": {
             "field": "Goods (%)",
@@ -31,8 +26,8 @@
             "title": "Percentage (%)"
           },
           "tooltip": [
-            { "field": "Date", "type": "temporal", "title": "Date" },
-            { "field": "Goods (%)", "type": "quantitative", "title": "Goods (%)" }
+            { "field": "Date", "type": "nominal" }, 
+            { "field": "Goods (%)", "type": "quantitative" }
           ]
         }
       },
@@ -48,8 +43,8 @@
             "title": "Percentage (%)"
           },
           "tooltip": [
-            { "field": "Date", "type": "temporal", "title": "Date" },
-            { "field": "Services (%)", "type": "quantitative", "title": "Services (%)" }
+            { "field": "Date", "type": "nominal" }, 
+            { "field": "Services (%)", "type": "quantitative" }
           ]
         }
       }
