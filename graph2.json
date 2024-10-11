@@ -4,13 +4,19 @@
     "width": 1000,
     "height": 400,
     "data": {
-      "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/CPI%2C%20Goods%20and%20Services%20components%2C%20annual%20movement%20(%25).csv"
+      "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/CPI%2C%20Goods%20and%20Services%20components%2C%20annual%20movement%20(%25).csv",
+      "format": {
+        "type": "csv"
+      }
     },
     "encoding": {
       "x": {
         "field": "Date",
-        "type": "nominal",  
-        "title": "Date"
+        "type": "temporal",  
+        "title": "Date",
+        "axis": {
+          "format": "%b %Y"  
+        }
       }
     },
     "layer": [
@@ -26,7 +32,7 @@
             "title": "Percentage (%)"
           },
           "tooltip": [
-            { "field": "Date", "type": "nominal" }, 
+            { "field": "Date", "type": "temporal", "format": "%b %Y" }, 
             { "field": "Goods (%)", "type": "quantitative" }
           ]
         }
@@ -43,7 +49,7 @@
             "title": "Percentage (%)"
           },
           "tooltip": [
-            { "field": "Date", "type": "nominal" }, 
+            { "field": "Date", "type": "temporal", "format": "%b %Y" }, 
             { "field": "Services (%)", "type": "quantitative" }
           ]
         }
