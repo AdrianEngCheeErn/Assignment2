@@ -9,7 +9,7 @@
     "encoding": {
       "x": {
         "field": "Date",
-        "type": "nominal",  
+        "type": "temporal", 
         "title": "Date"
       }
     },
@@ -26,7 +26,7 @@
             "title": "Percentage (%)"
           },
           "tooltip": [
-            { "field": "Date", "type": "nominal" }, 
+            { "field": "Date", "type": "temporal" }, 
             { "field": "Goods (%)", "type": "quantitative" }
           ]
         }
@@ -43,7 +43,7 @@
             "title": "Percentage (%)"
           },
           "tooltip": [
-            { "field": "Date", "type": "nominal" }, 
+            { "field": "Date", "type": "temporal" }, 
             { "field": "Services (%)", "type": "quantitative" }
           ]
         }
