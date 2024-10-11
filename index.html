@@ -47,6 +47,17 @@
     </div>
   </div>
 
+  <!-- Section for Chart 3 -->
+  <div class="section-container">
+    <h2>Chart 3: Goods and Services Comparison</h2> <!-- Subtitle for Chart 3 -->
+    <div class="chart-text-container">
+      <div id="chart3" class="vis-container"></div>
+      <div class="chart-description">
+        <p>This line chart compares the percentage change for Goods and Services over time.</p>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script type="text/javascript">
@@ -66,6 +77,15 @@
     background: "#FFFAE5" // Set background color to match the container
   }).then(function(result) {
     console.log('Chart 2 loaded');
+  }).catch(console.error);
+
+  // Embed Chart 3 (Goods and Services comparison) with specific width, height, and background color
+  vegaEmbed('#chart3', 'graph2.json', {
+    width: 650, 
+    height: 400, 
+    background: "#FFFAE5" // Set background color to match the container
+  }).then(function(result) {
+    console.log('Chart 3 loaded');
   }).catch(console.error);
 </script>
 
