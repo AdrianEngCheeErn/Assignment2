@@ -1,52 +1,52 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "background": "#FFFAE5",
-  "width": 1000,
-  "height": 400,
-  "data": {
-    "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/CPI%2C%20Goods%20and%20Services%20components%2C%20annual%20movement%20(%25).csv"
-  },
-  "encoding": {
-    "x": {
-      "field": "Date",
-      "type": "temporal",
-      "title": "Date"
-    }
-  },
-  "layer": [
-    {
-      "mark": {
-        "type": "line",
-        "color": "#FF6347"
-      },
-      "encoding": {
-        "y": {
-          "field": "Goods (%)",
-          "type": "quantitative",
-          "title": "Percentage (%)"
-        },
-        "tooltip": [
-          { "field": "Date", "type": "temporal" },
-          { "field": "Goods (%)", "type": "quantitative" }
-        ]
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background": "#FFFAE5",
+    "width": 1000,
+    "height": 400,
+    "data": {
+      "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/CPI%2C%20Goods%20and%20Services%20components%2C%20annual%20movement%20(%25).csv"
+    },
+    "encoding": {
+      "x": {
+        "field": "Date",
+        "type": "nominal",  
+        "title": "Date"
       }
     },
-    {
-      "mark": {
-        "type": "line",
-        "color": "#1E90FF"
+    "layer": [
+      {
+        "mark": {
+          "type": "line",
+          "color": "#FF6347"
+        }, 
+        "encoding": {
+          "y": {
+            "field": "Goods (%)",
+            "type": "quantitative",
+            "title": "Percentage (%)"
+          },
+          "tooltip": [
+            { "field": "Date", "type": "nominal" }, 
+            { "field": "Goods (%)", "type": "quantitative" }
+          ]
+        }
       },
-      "encoding": {
-        "y": {
-          "field": "Services (%)",
-          "type": "quantitative",
-          "title": "Percentage (%)"
+      {
+        "mark": {
+          "type": "line",
+          "color": "#1E90FF"
         },
-        "tooltip": [
-          { "field": "Date", "type": "temporal" },
-          { "field": "Services (%)", "type": "quantitative" }
-        ]
+        "encoding": {
+          "y": {
+            "field": "Services (%)",
+            "type": "quantitative",
+            "title": "Percentage (%)"
+          },
+          "tooltip": [
+            { "field": "Date", "type": "nominal" }, 
+            { "field": "Services (%)", "type": "quantitative" }
+          ]
+        }
       }
-    }
-  ]
-}
+    ]
+  }
