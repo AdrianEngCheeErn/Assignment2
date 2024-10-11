@@ -58,6 +58,17 @@
     </div>
   </div>
 
+  <!-- Section for Heatmap Chart -->
+  <div class="section-container">
+    <h2>Heatmap of Grocery Products Annual Movement</h2> <!-- Subtitle for Heatmap -->
+    <div class="chart-text-container">
+      <div id="heatmap" class="vis-container"></div>
+      <div class="chart-description">
+        <p>This heatmap visualizes the annual percentage movement of grocery products.</p>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script type="text/javascript">
@@ -86,6 +97,15 @@
     background: "#FFFAE5" // Set background color to match the container
   }).then(function(result) {
     console.log('Chart 3 loaded');
+  }).catch(console.error);
+
+  // Embed Heatmap chart with specific width, height, and background color
+  vegaEmbed('#heatmap', 'graph3.json', {
+    width: 450, 
+    height: 400, 
+    background: "#FFFAE5" // Set background color to match the container
+  }).then(function(result) {
+    console.log('Heatmap loaded');
   }).catch(console.error);
 </script>
 

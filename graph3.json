@@ -1,0 +1,62 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background": "#FFFAE5",
+    "description": "Lollipop chart of Grocery Products and their Annual Movement in June 2024",
+    "data": {
+      "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/main/Grocery%20products,%20annual%20movement%20(%25).csv",
+      "format": {
+        "type": "csv"
+      }
+    },
+    "width": 800,
+    "height": 400,
+    "layer": [
+      {
+        "mark": "rule",
+        "encoding": {
+          "y": {
+            "field": "Grocery",
+            "type": "nominal"
+          },
+          "x": {
+            "field": "Percentage Change",
+            "type": "quantitative"
+          },
+          "x2": {
+            "value": 0
+          },
+          "color": {
+            "field": "Percentage Change",
+            "type": "quantitative",
+            "scale": {
+              "scheme": "blues"
+            }
+          }
+        }
+      },
+      {
+        "mark": "circle",
+        "encoding": {
+          "y": {
+            "field": "Grocery",
+            "type": "nominal"
+          },
+          "x": {
+            "field": "Percentage Change",
+            "type": "quantitative"
+          },
+          "color": {
+            "field": "Percentage Change",
+            "type": "quantitative",
+            "scale": {
+              "scheme": "blues"
+            }
+          },
+          "tooltip": [
+            {"field": "Grocery", "type": "nominal", "title": "Grocery Product"},
+            {"field": "Percentage Change", "type": "quantitative", "title": "Annual Movement (%)"}
+          ]
+        }
+      }
+    ]
+  }
