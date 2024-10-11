@@ -1,55 +1,79 @@
 body {
-    background-color: lightgray;
+    background-color: #FFF9E6; /* Light yellow background */
     font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
 }
 
 h1 {
-    font-weight: 900;
+    font-family: 'Poppins', sans-serif; /* New bold font for title */
+    font-weight: 700; /* Extra bold */
     text-align: center;
     margin-bottom: 20px;
+    color: #333; /* Dark text for contrast */
+}
+
+/* Subtitle styling */
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center; /* Center align the subtitle */
+    color: #444;
 }
 
 .page {
     width: 90%;
     max-width: 1200px;
-    background-color: white;
-    margin: 40px auto;  /* Center page and add space from the top */
+    background-color: #FFF6CC; /* Lighter yellow for the container */
+    margin: 40px auto;
     padding: 50px;
     padding-top: 35px;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.1);  /* Subtle shadow for depth */
-    border-radius: 8px;  /* Smooth corners */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
+/* Section container with a lighter background */
+.section-container {
+    background-color: #FFFAE5; /* Slightly lighter background for each section */
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px; /* Space between sections */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+/* Flexbox container for chart and text */
+.chart-text-container {
+    display: flex;
+    justify-content: space-between; /* Ensure even spacing between chart and text */
+    align-items: center; /* Vertically align text to center of chart */
+    margin-bottom: 30px; /* Add space between sections */
+}
+
+/* Chart styling */
 .vis-container {
-    width: 100%;
-    margin: 30px auto;  /* Add spacing between charts */
-    padding: 0;  /* Remove padding */
-    border-radius: 0;  /* Remove rounded edges */
-    box-shadow: none;  /* Remove shadow */
-    background-color: transparent;  /* Remove background color */
+    width: 50%; /* Set chart width to 50% */
+    padding: 0;
+    background-color: transparent;
 }
 
-.description h2,
-h1 {
-    margin-top: 0px;
-}
-
-.description-right {
+/* Description text styling */
+.chart-description {
+    width: 50%; /* Set text width to 50% */
     padding-left: 20px;
 }
 
-.description-left {
-    padding-right: 20px;
+/* Text appearance */
+.chart-description p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333; /* Darker text for contrast */
 }
 
-/* Spacing between elements in pure-g container */
 .pure-g {
     margin-bottom: 40px;
 }
 
-/* Small text font styling */
 .small-font {
     font-size: 14px;
 }

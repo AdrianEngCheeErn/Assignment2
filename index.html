@@ -15,7 +15,7 @@
   integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap" rel="stylesheet">
   
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="styles.css" media="all">
@@ -25,18 +25,46 @@
 <div class="page">
   <h1>Homework 10 FIT3179</h1>
 
+  <!-- Section for Chart 1 -->
+  <div class="section-container">
+    <h2>Chart 1: Trends Over Time</h2> <!-- Subtitle for Chart 1 -->
+    <div class="chart-text-container">
+      <div id="chart1" class="vis-container"></div>
+      <div class="chart-description">
+        <p>This chart shows the data for XYZ. It is a representation of trends over time.</p>
+      </div>
+    </div>
+  </div>
 
-  <div id="chart1" class="vis-container"></div>
+  <!-- Section for Chart 2 -->
+  <div class="section-container">
+    <h2>Chart 2: Geographic Distribution</h2> <!-- Subtitle for Chart 2 -->
+    <div class="chart-text-container">
+      <div id="chart2" class="vis-container"></div>
+      <div class="chart-description">
+        <p>This choropleth map highlights the geographic distribution of ABC data.</p>
+      </div>
+    </div>
+  </div>
 
-  <div id="chart2" class="vis-container"></div>
 </div>
 
 <script type="text/javascript">
-  vegaEmbed('#chart1', 'graph1.json').then(function(result) {
+  // Embed Chart 1 with specific width, height, and background color
+  vegaEmbed('#chart1', 'graph1.json', {
+    width: 400, 
+    height: 300, 
+    background: "#FFFAE5" // Set background color to match the container
+  }).then(function(result) {
     console.log('Chart 1 loaded');
   }).catch(console.error);
 
-  vegaEmbed('#chart2', 'choropleth_map.vg.json').then(function(result) {
+  // Embed Chart 2 with specific width, height, and background color
+  vegaEmbed('#chart2', 'choropleth_map.vg.json', {
+    width: 400, 
+    height: 300, 
+    background: "#FFFAE5" // Set background color to match the container
+  }).then(function(result) {
     console.log('Chart 2 loaded');
   }).catch(console.error);
 </script>
