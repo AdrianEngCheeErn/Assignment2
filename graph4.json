@@ -1,40 +1,53 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Radial Bar Chart: Rent Movement by City in June 2024",
+    "background": "#FFFAE5",
+    "width": 400,
+    "height": 400,
     "data": {
-      "values": [
-        {"City": "Sydney", "Percentage Change": 8.1},
-        {"City": "Melbourne", "Percentage Change": 6.6},
-        {"City": "Brisbane", "Percentage Change": 7.9},
-        {"City": "Adelaide", "Percentage Change": 5.8},
-        {"City": "Perth", "Percentage Change": 10},
-        {"City": "Australia", "Percentage Change": 7.3}
-      ]
+        "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/Rents%2C%20annual%20movement%20(%25)%20(1).csv",
+        "format": {
+            "type": "csv"
+        }
     },
     "transform": [
-      {
-        "calculate": "datum['Percentage Change'] / 100 * 2 * Math.PI",
-        "as": "angle"
-      },
-      {
-        "calculate": "datum['City'] + ' (' + datum['Percentage Change'] + '%)'",
-        "as": "label"
-      }
+        {
+            "filter": "datum['Rents, annual movement (%)'] == 'Jun-24'"
+        },
+        {
+            "fold": ["Sydney (%)", "Melbourne (%)", "Brisbane (%)", "Adelaide (%)", "Perth (%)", "Australia (%)"],
+            "as": ["City", "Percentage Change"]
+        },
+        {
+            "calculate": "datum['Percentage Change'] / 100 * 2 * Math.PI",
+            "as": "angle"
+        },
+        {
+            "calculate": "datum['City'] + ' (' + datum['Percentage Change'] + '%)'",
+            "as": "label"
+        }
     ],
     "mark": "arc",
     "encoding": {
-      "theta": {
-        "field": "angle",
-        "type": "quantitative"
-      },
-      "color": {
-        "field": "City",
-        "type": "nominal",
-        "scale": {"scheme": "category10"}
-      },
-      "tooltip": [
-        {"field": "City", "type": "nominal"},
-        {"field": "Percentage Change", "type": "quantitative"}
-      ]
+        "theta": {
+            "field": "angle",
+            "type": "quantitative"
+        },
+        "color": {
+            "field": "City",
+            "type": "nominal",
+            "scale": {
+                "scheme": "category10"
+            }
+        },
+        "tooltip": [
+            {
+                "field": "City",
+                "type": "nominal"
+            },
+            {
+                "field": "Percentage Change",
+                "type": "quantitative"
+            }
+        ]
     }
-  }
+}
