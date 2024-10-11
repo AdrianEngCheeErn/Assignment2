@@ -6,7 +6,10 @@
     "data": {
       "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/CPI%2C%20Goods%20and%20Services%20components%2C%20annual%20movement%20(%25).csv",
       "format": {
-        "type": "csv"
+        "type": "csv",
+        "parse": {
+          "Date": "date:'%Y-%m-%d'" 
+        }
       }
     },
     "encoding": {
@@ -14,8 +17,10 @@
         "field": "Date",
         "type": "temporal",  
         "title": "Date",
+        "timeUnit": "year",  
         "axis": {
-          "format": "%b %Y"  
+          "format": "%Y",  
+          "tickCount": "year"  
         }
       }
     },
