@@ -1,9 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "background": "#FFFAE5", 
-  "width": 500,
+  "background": "#FFFAE5",
+  "width": 1000,
   "height": 400,
-  "title": { "text": "Cheapest European Cities" },
   "data": {
     "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Homework10FIT3179/refs/heads/main/Weighted%20average%20of%20eight%20capital%20cities%2C%20quarterly%20movement%20(%25).csv"
   },
@@ -48,10 +47,10 @@
     {
       "mark": "bar",
       "encoding": {
-        "x": { 
-          "field": "Percentage change from previous quarter", 
-          "type": "quantitative", 
-          "title": "Percentage change from previous quarter" 
+        "x": {
+          "field": "Percentage change from previous quarter",
+          "type": "quantitative",
+          "title": "Percentage change from previous quarter"
         },
         "y": { "field": "Groups", "type": "nominal" },
         "opacity": {
@@ -70,12 +69,12 @@
     {
       "mark": {
         "type": "text",
-        "align": "left",
+        "align": "right",
         "baseline": "middle",
-        "dx": 10,
-        "dy": -5,
-        "color": "black", 
-        "fontSize": 14,
+        "dx": -10,
+        "dy": 20,
+        "color": "black",
+        "fontSize": 12,
         "fontWeight": "bold"
       },
       "encoding": {
@@ -83,7 +82,7 @@
           "aggregate": "max",
           "field": "Percentage change from previous quarter",
           "type": "quantitative",
-          "title": "Percentage change from previous quarter" 
+          "title": "Percentage change from previous quarter"
         },
         "y": {
           "datum": "Clothing and footwear"

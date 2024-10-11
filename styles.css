@@ -46,21 +46,21 @@ h2 {
 .chart-text-container {
     display: flex;
     justify-content: space-between; /* Ensure even spacing between chart and text */
-    align-items: center; /* Vertically align text to center of chart */
+    align-items: flex-start; /* Align text to the top of chart */
     margin-bottom: 30px; /* Add space between sections */
 }
 
 /* Chart styling */
 .vis-container {
-    width: 50%; /* Set chart width to 50% */
+    width: 70%; 
     padding: 0;
     background-color: transparent;
 }
 
 /* Description text styling */
 .chart-description {
-    width: 50%; /* Set text width to 50% */
-    padding-left: 20px;
+    width: 30%; /* Adjust the width to ensure enough space between chart and text */
+    padding-left: 30px; /* Add more padding to separate the text from the chart */
 }
 
 /* Text appearance */
