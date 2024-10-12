@@ -4,50 +4,54 @@
     "width": 400,
     "height": 400,
     "data": {
-        "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/Rents%2C%20annual%20movement%20(%25)%20(1).csv",
-        "format": {
-            "type": "csv"
-        }
+      "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/Rents%2C%20annual%20movement%20(%25)%20(1).csv",
+      "format": {
+        "type": "csv"
+      }
     },
     "transform": [
-        {
-            "filter": "datum['Rents, annual movement (%)'] == 'Jun-24'"
-        },
-        {
-            "fold": ["Sydney (%)", "Melbourne (%)", "Brisbane (%)", "Adelaide (%)", "Perth (%)", "Australia (%)"],
-            "as": ["City", "Percentage Change"]
-        },
-        {
-            "calculate": "datum['Percentage Change'] / 100 * 2 * Math.PI",
-            "as": "angle"
-        },
-        {
-            "calculate": "datum['City'] + ' (' + datum['Percentage Change'] + '%)'",
-            "as": "label"
-        }
+      {
+        "fold": ["Sydney (%)", "Melbourne (%)", "Brisbane (%)", "Adelaide (%)", "Perth (%)", "Australia (%)"],
+        "as": ["City", "Percentage Change"]
+      },
+      {
+        "calculate": "datum['Percentage Change'] / 100",
+        "as": "Normalized Change"
+      },
+      {
+        "filter": "datum['Normalized Change'] > 0"  
+      }
     ],
-    "mark": "arc",
     "encoding": {
-        "theta": {
-            "field": "angle",
-            "type": "quantitative"
+      "theta": {"field": "Normalized Change", "type": "quantitative", "stack": true}, 
+      "color": {"field": "City", "type": "nominal", "scale": {"scheme": "category10"}}
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "arc",
+          "innerRadius": 50,  
+          "outerRadius": 180 
         },
-        "color": {
-            "field": "City",
-            "type": "nominal",
-            "scale": {
-                "scheme": "category10"
-            }
+        "encoding": {
+          "tooltip": [
+            {"field": "City", "type": "nominal"},
+            {"field": "Percentage Change", "type": "quantitative"}
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "radius": 100,  
+          "theta": {"field": "Normalized Change", "type": "quantitative", "stack": true},
+          "align": "center",
+          "baseline": "middle"
         },
-        "tooltip": [
-            {
-                "field": "City",
-                "type": "nominal"
-            },
-            {
-                "field": "Percentage Change",
-                "type": "quantitative"
-            }
-        ]
-    }
-}
+        "encoding": {
+          "text": {"field": "Percentage Change", "type": "quantitative", "format": ".1f"},
+          "color": {"value": "black"}
+        }
+      }
+    ]
+  }

@@ -1,63 +1,90 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "background": "#FFFAE5",
-    "width": 1000,
-    "height": 400,
-    "data": {
-      "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/CPI%2C%20Goods%20and%20Services%20components%2C%20annual%20movement%20(%25).csv",
-      "format": {
-        "type": "csv",
-        "parse": {
-          "Date": "date:'%Y-%m-%d'" 
-        }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "#FFFAE5",
+  "width": 1000,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/CPI%2C%20Goods%20and%20Services%20components%2C%20annual%20movement%20(%25).csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Date": "date:'%Y-%m-%d'"
+      }
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "Date",
+      "type": "temporal",
+      "title": "Date",
+      "timeUnit": "year",
+      "axis": {
+        "format": "%Y",
+        "tickCount": "year"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "line", "color": "#FF6347"},
+      "encoding": {
+        "y": {"field": "Goods (%)", "type": "quantitative", "title": "Goods Percentage (%)"},
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "format": "%b %Y"},
+          {"field": "Goods (%)", "type": "quantitative"}
+        ]
       }
     },
-    "encoding": {
-      "x": {
-        "field": "Date",
-        "type": "temporal",  
-        "title": "Date",
-        "timeUnit": "year",  
-        "axis": {
-          "format": "%Y",  
-          "tickCount": "year"  
-        }
+    {
+      "mark": {"type": "point", "color": "#FF6347", "filled": true},
+      "encoding": {
+        "y": {"field": "Goods (%)", "type": "quantitative"}
       }
     },
-    "layer": [
-      {
-        "mark": {
-          "type": "line",
-          "color": "#FF6347"
-        }, 
-        "encoding": {
-          "y": {
-            "field": "Goods (%)",
-            "type": "quantitative",
-            "title": "Percentage (%)"
-          },
-          "tooltip": [
-            { "field": "Date", "type": "temporal", "format": "%b %Y" }, 
-            { "field": "Goods (%)", "type": "quantitative" }
-          ]
-        }
-      },
-      {
-        "mark": {
-          "type": "line",
-          "color": "#1E90FF"
-        },
-        "encoding": {
-          "y": {
-            "field": "Services (%)",
-            "type": "quantitative",
-            "title": "Percentage (%)"
-          },
-          "tooltip": [
-            { "field": "Date", "type": "temporal", "format": "%b %Y" }, 
-            { "field": "Services (%)", "type": "quantitative" }
-          ]
-        }
+    {
+      "mark": {"type": "line", "color": "#1E90FF"},
+      "encoding": {
+        "y": {"field": "Services (%)", "type": "quantitative", "title": "Services Percentage (%)"},
+        "tooltip": [
+          {"field": "Date", "type": "temporal", "format": "%b %Y"},
+          {"field": "Services (%)", "type": "quantitative"}
+        ]
       }
-    ]
+    },
+    {
+      "mark": {"type": "point", "color": "#1E90FF", "filled": true},
+      "encoding": {
+        "y": {"field": "Services (%)", "type": "quantitative"}
+      }
+    },
+    {
+      "transform": [
+        {"aggregate": [{"op": "max", "field": "Goods (%)", "as": "MaxGoods"}]},
+        {"filter": "datum['Goods (%)'] === datum.MaxGoods"}
+      ],
+      "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5, "fontWeight": "bold"},
+      "encoding": {
+        "x": {"field": "Date", "type": "temporal"},
+        "y": {"field": "Goods (%)", "type": "quantitative"},
+        "text": {"field": "Goods (%)"},
+        "color": {"value": "#FF6347"}
+      }
+    },
+    {
+      "transform": [
+        {"aggregate": [{"op": "max", "field": "Services (%)", "as": "MaxServices"}]},
+        {"filter": "datum['Services (%)'] === datum.MaxServices"}
+      ],
+      "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5, "fontWeight": "bold"},
+      "encoding": {
+        "x": {"field": "Date", "type": "temporal"},
+        "y": {"field": "Services (%)", "type": "quantitative"},
+        "text": {"field": "Services (%)"},
+        "color": {"value": "#1E90FF"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": "transparent"}
   }
+}
