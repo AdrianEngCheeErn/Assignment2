@@ -8,10 +8,33 @@
     "format": {
       "type": "csv",
       "parse": {
-        "Date": "date:'%Y-%m-%d'"
+        "Date": "date:'%Y-%m-%d'",
+        "Goods (%)": "number",
+        "Services (%)": "number"
       }
     }
   },
+  "params": [
+    {
+      "name": "Category_selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "Goods (%)", "Services (%)"],
+        "labels": ["Show All", "Goods (%)", "Services (%)"],
+        "name": "Select Category: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "fold": ["Goods (%)", "Services (%)"],
+      "as": ["Category", "Value"]
+    },
+    {
+      "calculate": "datum.Category == Category_selection || Category_selection == null ? 1 : 0.1",
+      "as": "opacity_value"
+    }
+  ],
   "encoding": {
     "x": {
       "field": "Date",
@@ -22,65 +45,96 @@
         "format": "%Y",
         "tickCount": "year"
       }
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "title": "Categories",
+      "scale": {
+        "domain": ["Goods (%)", "Services (%)"],
+        "range": ["#FF6347", "#1E90FF"]
+      }
     }
   },
   "layer": [
     {
-      "mark": {"type": "line", "color": "#FF6347"},
+      "mark": {"type": "line"},
       "encoding": {
-        "y": {"field": "Goods (%)", "type": "quantitative", "title": "Goods Percentage (%)"},
+        "y": {"field": "Value", "type": "quantitative", "title": "Percentage (%)"},
         "tooltip": [
           {"field": "Date", "type": "temporal", "format": "%b %Y"},
-          {"field": "Goods (%)", "type": "quantitative"}
-        ]
+          {"field": "Value", "type": "quantitative"},
+          {"field": "Category", "type": "nominal"}
+        ],
+        "opacity": {
+          "field": "opacity_value",
+          "type": "quantitative",
+          "legend": null
+        }
       }
     },
     {
-      "mark": {"type": "point", "color": "#FF6347", "filled": true},
+      "mark": {"type": "point", "filled": true},
       "encoding": {
-        "y": {"field": "Goods (%)", "type": "quantitative"}
-      }
-    },
-    {
-      "mark": {"type": "line", "color": "#1E90FF"},
-      "encoding": {
-        "y": {"field": "Services (%)", "type": "quantitative", "title": "Services Percentage (%)"},
+        "y": {"field": "Value", "type": "quantitative"},
         "tooltip": [
           {"field": "Date", "type": "temporal", "format": "%b %Y"},
-          {"field": "Services (%)", "type": "quantitative"}
-        ]
-      }
-    },
-    {
-      "mark": {"type": "point", "color": "#1E90FF", "filled": true},
-      "encoding": {
-        "y": {"field": "Services (%)", "type": "quantitative"}
+          {"field": "Value", "type": "quantitative"},
+          {"field": "Category", "type": "nominal"}
+        ],
+        "opacity": {
+          "field": "opacity_value",
+          "type": "quantitative",
+          "legend": null
+        }
       }
     },
     {
       "transform": [
-        {"aggregate": [{"op": "max", "field": "Goods (%)", "as": "MaxGoods"}]},
-        {"filter": "datum['Goods (%)'] === datum.MaxGoods"}
+        {
+          "filter": "datum['Category'] === 'Goods (%)'"
+        },
+        {
+          "window": [{"op": "max", "field": "Value", "as": "MaxGoods"}],
+          "frame": [null, null]
+        },
+        {"filter": "datum['Value'] === datum.MaxGoods"}
       ],
-      "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5, "fontWeight": "bold"},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -60,
+        "dy": -10,
+        "fontWeight": "bold"
+      },
       "encoding": {
         "x": {"field": "Date", "type": "temporal"},
-        "y": {"field": "Goods (%)", "type": "quantitative"},
-        "text": {"field": "Goods (%)"},
-        "color": {"value": "#FF6347"}
+        "y": {"field": "Value", "type": "quantitative"},
+        "text": {"value": "Highest percentage change of 8.4%"}
       }
     },
     {
       "transform": [
-        {"aggregate": [{"op": "max", "field": "Services (%)", "as": "MaxServices"}]},
-        {"filter": "datum['Services (%)'] === datum.MaxServices"}
+        {
+          "filter": "datum['Category'] === 'Services (%)'"
+        },
+        {
+          "window": [{"op": "max", "field": "Value", "as": "MaxServices"}],
+          "frame": [null, null]
+        },
+        {"filter": "datum['Value'] === datum.MaxServices"}
       ],
-      "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5, "fontWeight": "bold"},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -60,
+        "dy": -10,
+        "fontWeight": "bold"
+      },
       "encoding": {
         "x": {"field": "Date", "type": "temporal"},
-        "y": {"field": "Services (%)", "type": "quantitative"},
-        "text": {"field": "Services (%)"},
-        "color": {"value": "#1E90FF"}
+        "y": {"field": "Value", "type": "quantitative"},
+        "text": {"value": "Highest percentage change of 6.3%"}
       }
     }
   ],

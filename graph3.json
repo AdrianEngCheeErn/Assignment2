@@ -1,64 +1,121 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "background": "#FFFAE5",
-    "description": "Lollipop chart of Grocery Products and their Annual Movement in June 2024",
-    "data": {
-      "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/main/Grocery%20products,%20annual%20movement%20(%25).csv",
-      "format": {
-        "type": "csv"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "#FFFAE5",
+  "description": "Lollipop chart of Grocery Products and their Annual Movement in June 2024",
+  "data": {
+    "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/main/Grocery%20products,%20annual%20movement%20(%25).csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "width": 800,
+  "height": 400,
+  "params": [
+    {
+      "name": "Grocery_selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "Food and non-alcoholic beverages", "Bread and cereal products", "Meat and seafoods", "Dairy and related products", "Fruit and vegetables", "Food products n.e.c", "Non alcoholic beverages"],
+        "labels": ["Show All", "Food and non-alcoholic beverages", "Bread and cereal products", "Meat and seafoods", "Dairy and related products", "Fruit and vegetables", "Food products n.e.c", "Non alcoholic beverages"],
+        "name": "Select Grocery: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "datum.Grocery == Grocery_selection || Grocery_selection == null ? 1 : 0.1",
+      "as": "opacity_value"
+    }
+  ],
+  "layer": [
+    {
+      "mark": "rule",
+      "encoding": {
+        "y": {
+          "field": "Grocery",
+          "type": "nominal"
+        },
+        "x": {
+          "field": "Percentage Change",
+          "type": "quantitative"
+        },
+        "x2": {
+          "value": 0
+        },
+        "color": {
+          "field": "Percentage Change",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "blues"
+          },
+          "legend": null  
+        },
+        "opacity": {
+          "field": "opacity_value",
+          "type": "quantitative",
+          "legend": null
+        }
       }
     },
-    "width": 800,
-    "height": 400,
-    "layer": [
-      {
-        "mark": "rule",
-        "encoding": {
-          "y": {
-            "field": "Grocery",
-            "type": "nominal"
+    {
+      "mark": "circle",
+      "encoding": {
+        "y": {
+          "field": "Grocery",
+          "type": "nominal"
+        },
+        "x": {
+          "field": "Percentage Change",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Percentage Change",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "blues"
           },
-          "x": {
-            "field": "Percentage Change",
-            "type": "quantitative"
-          },
-          "x2": {
-            "value": 0
-          },
-          "color": {
-            "field": "Percentage Change",
-            "type": "quantitative",
-            "scale": {
-              "scheme": "blues"
-            },
-            "legend": null  
-          }
-        }
-      },
-      {
-        "mark": "circle",
-        "encoding": {
-          "y": {
-            "field": "Grocery",
-            "type": "nominal"
-          },
-          "x": {
-            "field": "Percentage Change",
-            "type": "quantitative"
-          },
-          "color": {
-            "field": "Percentage Change",
-            "type": "quantitative",
-            "scale": {
-              "scheme": "blues"
-            },
-            "legend": null  
-          },
-          "tooltip": [
-            {"field": "Grocery", "type": "nominal", "title": "Grocery Product"},
-            {"field": "Percentage Change", "type": "quantitative", "title": "Annual Movement (%)"}
-          ]
+          "legend": null  
+        },
+        "tooltip": [
+          {"field": "Grocery", "type": "nominal", "title": "Grocery Product"},
+          {"field": "Percentage Change", "type": "quantitative", "title": "Annual Movement (%)"}
+        ],
+        "opacity": {
+          "field": "opacity_value",
+          "type": "quantitative",
+          "legend": null
         }
       }
-    ]
-  }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "fontWeight": "bold",
+        "dx": -50,
+        "dy": -8 
+      },
+      "transform": [
+        {
+          "filter": "datum.Grocery == 'Non alcoholic beverages'"
+        }
+      ],
+      "encoding": {
+        "y": {
+          "field": "Grocery",
+          "type": "nominal"
+        },
+        "x": {
+          "field": "Percentage Change",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Non alcoholic beverages\nhas the highest percentage change"
+        },
+        "opacity": {
+          "value": 1
+        }
+      }
+    }
+  ]
+}

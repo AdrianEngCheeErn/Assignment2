@@ -1,57 +1,95 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "background": "#FFFAE5",
-    "width": 400,
-    "height": 400,
-    "data": {
-      "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/Rents%2C%20annual%20movement%20(%25)%20(1).csv",
-      "format": {
-        "type": "csv"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "#FFFAE5",
+  "width": 400,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/Rents%2C%20annual%20movement%20(%25)%20(1).csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "params": [
+    {
+      "name": "City_selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "Sydney (%)", "Melbourne (%)", "Brisbane (%)", "Adelaide (%)", "Perth (%)", "Australia (%)"],
+        "labels": ["Show All", "Sydney", "Melbourne", "Brisbane", "Adelaide", "Perth", "Australia"],
+        "name": "Select City: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "fold": ["Sydney (%)", "Melbourne (%)", "Brisbane (%)", "Adelaide (%)", "Perth (%)", "Australia (%)"],
+      "as": ["City", "Percentage Change"]
+    },
+    {
+      "calculate": "datum['Percentage Change'] / 100",
+      "as": "Normalized Change"
+    },
+    {
+      "filter": "datum['Normalized Change'] > 0"
+    },
+    {
+      "calculate": "datum.City == City_selection ? 1 : 0.2",
+      "as": "opacity_value"
+    }
+  ],
+  "encoding": {
+    "theta": {"field": "Normalized Change", "type": "quantitative", "stack": true}, 
+    "color": {"field": "City", "type": "nominal", "scale": {"scheme": "category10"}}
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 50,  
+        "outerRadius": 180 
+      },
+      "encoding": {
+        "opacity": {"field": "opacity_value", "legend": null},  
+        "tooltip": [
+          {"field": "City", "type": "nominal"},
+          {"field": "Percentage Change", "type": "quantitative"}
+        ]
       }
     },
-    "transform": [
-      {
-        "fold": ["Sydney (%)", "Melbourne (%)", "Brisbane (%)", "Adelaide (%)", "Perth (%)", "Australia (%)"],
-        "as": ["City", "Percentage Change"]
+    {
+      "mark": {
+        "type": "text",
+        "radius": 100,  
+        "theta": {"field": "Normalized Change", "type": "quantitative", "stack": true},
+        "align": "center",
+        "baseline": "middle"
       },
-      {
-        "calculate": "datum['Percentage Change'] / 100",
-        "as": "Normalized Change"
-      },
-      {
-        "filter": "datum['Normalized Change'] > 0"  
+      "encoding": {
+        "text": {"field": "Percentage Change", "type": "quantitative", "format": ".1f"},
+        "color": {"value": "black"},
+        "opacity": {"field": "opacity_value"} 
       }
-    ],
-    "encoding": {
-      "theta": {"field": "Normalized Change", "type": "quantitative", "stack": true}, 
-      "color": {"field": "City", "type": "nominal", "scale": {"scheme": "category10"}}
     },
-    "layer": [
-      {
-        "mark": {
-          "type": "arc",
-          "innerRadius": 50,  
-          "outerRadius": 180 
-        },
-        "encoding": {
-          "tooltip": [
-            {"field": "City", "type": "nominal"},
-            {"field": "Percentage Change", "type": "quantitative"}
-          ]
-        }
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": -90,  
+        "dy": 40,   
+        "fontSize": 10,
+        "fontWeight": "bold"
       },
-      {
-        "mark": {
-          "type": "text",
-          "radius": 100,  
-          "theta": {"field": "Normalized Change", "type": "quantitative", "stack": true},
-          "align": "center",
-          "baseline": "middle"
-        },
-        "encoding": {
-          "text": {"field": "Percentage Change", "type": "quantitative", "format": ".1f"},
-          "color": {"value": "black"}
+      "transform": [
+        {
+          "filter": "datum.City == 'Adelaide (%)'"
         }
+      ],
+      "encoding": {
+        "theta": {"field": "Normalized Change", "type": "quantitative", "stack": true},
+        "radius": {"value": 200},
+        "text": {"value": "Adelaide has the highest\npercentage change"},
+        "color": {"value": "black"} 
       }
-    ]
-  }
+    }
+  ]
+}
