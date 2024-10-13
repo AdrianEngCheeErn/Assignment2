@@ -6,10 +6,10 @@ body {
 }
 
 h1 {
-    font-family: 'Poppins', sans-serif; /* New bold font for title */
-    font-weight: 700; /* Extra bold */
+    font-family: 'Poppins', sans-serif; /* Bold font for title */
+    font-weight: 700;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* Increased space below the title */
     color: #333; /* Dark text for contrast */
 }
 
@@ -17,29 +17,30 @@ h1 {
 h2 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-top: 20px; /* Added margin above subtitles */
+    margin-bottom: 20px; /* Increased bottom margin */
     text-align: center; /* Center align the subtitle */
     color: #444;
 }
 
+/* Page container styling */
 .page {
     width: 90%;
     max-width: 1200px;
     background-color: #FFF6CC; /* Lighter yellow for the container */
-    margin: 40px auto;
-    padding: 50px;
-    padding-top: 35px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    margin: 80px auto; /* Increased space at the top */
+    padding: 80px 90px; /* Increased padding for better content spacing */
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1); /* Slightly increased shadow for more emphasis */
+    border-radius: 12px; /* Softer corners */
 }
 
-/* Section container with a lighter background */
+/* Section container with more spacing */
 .section-container {
     background-color: #FFFAE5; /* Slightly lighter background for each section */
-    border-radius: 8px;
-    padding: 30px;
-    margin-bottom: 30px; /* Space between sections */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    border-radius: 10px;
+    padding: 50px; /* Increased padding within sections */
+    margin-bottom: 60px; /* Increased space between sections */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow */
 }
 
 /* Flexbox container for chart and text */
@@ -47,12 +48,12 @@ h2 {
     display: flex;
     justify-content: space-between; /* Ensure even spacing between chart and text */
     align-items: flex-start; /* Align text to the top of chart */
-    margin-bottom: 30px; /* Add space between sections */
+    margin-bottom: 40px; /* Add more space between sections */
 }
 
 /* Chart styling */
 .vis-container {
-    width: 70%; 
+    width: 65%; /* More space for the charts */
     padding: 0;
     background-color: transparent;
 }
@@ -60,20 +61,29 @@ h2 {
 /* Description text styling */
 .chart-description {
     width: 30%; /* Adjust the width to ensure enough space between chart and text */
-    padding-left: 30px; /* Add more padding to separate the text from the chart */
+    padding-left: 50px; /* Increased padding for better separation */
 }
 
 /* Text appearance */
 .chart-description p {
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.7; /* Increased line-height for better readability */
     color: #333; /* Darker text for contrast */
 }
 
+/* Spacing between columns */
 .pure-g {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
+/* Small-font adjustments */
 .small-font {
     font-size: 14px;
+}
+
+/* Increased spacing at the bottom-right for small text */
+.bottom-right {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }

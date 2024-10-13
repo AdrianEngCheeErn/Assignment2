@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "background": "#FFFAE5",
-  "width": 1000,
+  "background": "#F5F5DC",
+  "width": 700,
   "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/AdrianEngCheeErn/Assignment2/refs/heads/main/CPI%2C%20Goods%20and%20Services%20components%2C%20annual%20movement%20(%25).csv",
@@ -43,7 +43,9 @@
       "timeUnit": "year",
       "axis": {
         "format": "%Y",
-        "tickCount": "year"
+        "tickCount": "year",
+        "labelColor": "#8B4513",
+        "titleColor": "#8B4513"
       }
     },
     "color": {
@@ -52,7 +54,7 @@
       "title": "Categories",
       "scale": {
         "domain": ["Goods (%)", "Services (%)"],
-        "range": ["#FF6347", "#1E90FF"]
+        "range": ["#8B4513", "#228B22"]  
       }
     }
   },
@@ -60,7 +62,15 @@
     {
       "mark": {"type": "line"},
       "encoding": {
-        "y": {"field": "Value", "type": "quantitative", "title": "Percentage (%)"},
+        "y": {
+          "field": "Value",
+          "type": "quantitative",
+          "title": "Percentage (%)",
+          "axis": {
+            "labelColor": "#8B4513",
+            "titleColor": "#8B4513"
+          }
+        },
         "tooltip": [
           {"field": "Date", "type": "temporal", "format": "%b %Y"},
           {"field": "Value", "type": "quantitative"},
@@ -105,7 +115,8 @@
         "align": "left",
         "dx": -60,
         "dy": -10,
-        "fontWeight": "bold"
+        "fontWeight": "bold",
+        "color": "#8B4513"
       },
       "encoding": {
         "x": {"field": "Date", "type": "temporal"},
@@ -129,7 +140,8 @@
         "align": "left",
         "dx": -60,
         "dy": -10,
-        "fontWeight": "bold"
+        "fontWeight": "bold",
+        "color": "#8B4513"
       },
       "encoding": {
         "x": {"field": "Date", "type": "temporal"},

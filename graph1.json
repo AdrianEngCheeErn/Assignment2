@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "background": "#FFFAE5",
+  "background": "#F5F5DC",  
   "width": 1000,
   "height": 400,
   "data": {
@@ -45,14 +45,27 @@
   ],
   "layer": [
     {
-      "mark": "bar",
+      "mark": {
+        "type": "bar",
+        "color": "#D2B48C"  
+      },
       "encoding": {
         "x": {
           "field": "Percentage change from previous quarter",
           "type": "quantitative",
-          "title": "Percentage change from previous quarter"
+          "title": "Percentage change from previous quarter",
+          "axis": {
+            "gridColor": "#EED5B7" 
+          }
         },
-        "y": { "field": "Groups", "type": "nominal" },
+        "y": {
+          "field": "Groups",
+          "type": "nominal",
+          "axis": {
+            "labelColor": "#8B4513", 
+            "titleColor": "#8B4513"
+          }
+        },
         "opacity": {
           "condition": {
             "test": "datum.Groups == Groups_selection || Groups_selection == null",
@@ -73,7 +86,7 @@
         "baseline": "middle",
         "dx": 40,
         "dy": 20,
-        "color": "black",
+        "color": "#A0522D",  
         "fontSize": 12,
         "fontWeight": "bold"
       },
